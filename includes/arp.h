@@ -31,7 +31,7 @@ typedef struct{
 	unsigned char sourceMac[6];
 	uint32_t sourceIp;
 	unsigned char destinationMac[6];
-	uint16_t destinationIp;
+	uint32_t destinationIp;
 }__attribute__((packed)) arp_ipv4;
 
 typedef struct{
@@ -42,7 +42,7 @@ typedef struct{
 } ArpCacheEntry;
 
 void initArp();
-void incomingReqeust(Netdev *netdev, EthernetHeader *header);
+void incomingRequest(Netdev *netdev, EthernetHeader *header);
 void replyArp(Netdev *netdev, EthernetHeader *ethHeader, ArpHeader *arpHeader);
 
 #endif

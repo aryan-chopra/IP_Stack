@@ -7,10 +7,13 @@
 #include "netdev.h"
 
 ArpCacheEntry cache[ARP_CACHE_LEN];
-//ArpCacheEntry *cache = malloc(ARP_CACHE_LEN * sizeof(ArpCacheEntry));
+
+void initArp() {
+	memset(cache, 0, ARP_CACHE_LEN * sizeof(ArpCacheEntry));
+}
 
 int insertArpEntry(ArpHeader *header, arp_ipv4 *data) {
-    int length = ARP_CACHE_LEN;
+	int length = ARP_CACHE_LEN;
 
 	ArpCacheEntry *entry;
 
@@ -26,10 +29,12 @@ int insertArpEntry(ArpHeader *header, arp_ipv4 *data) {
 
 		return 0;
 	}
+
+	return -1;
 }
 
 int updateArpTable(ArpHeader *header, arp_ipv4 *data) {
-    int length = ARP_CACHE_LEN;
+	int length = ARP_CACHE_LEN;
 
 	ArpCacheEntry *entry;
 
@@ -92,20 +97,20 @@ void replyArp(Netdev *netdev, EthernetHeader *etherHeader, ArpHeader *arpHeader)
 	arp_ipv4 *arpData;
 	int length;
 
-arpData = (arp_ipv4 *) arpHeader->data;
+	arpData = (arp_ipv4 *) arpHeader->data;
 
-memcpy(arpData->destinationMac, arpData->sourceMac, 6);
-arpData->destinationIp = arpData->sourceIp;
-memcpy(arpData->sourceMac, netdev->macOctets, 6);
-arpData->sourceIp = netdev->address;
+	memcpy(arpData->destinationMac, arpData->sourceMac, 6);
+	arpData->destinationIp = arpData->sourceIp;
+	memcpy(arpData->sourceMac, netdev->macOctets, 6);
+	arpData->sourceIp = netdev->address;
 
-arpHeader->opcode = ARP_REPLY;
+	arpHeader->opcode = ARP_REPLY;
 
-arpHeader->opcode = htons(arpHeader->opcode);
-arpHeader->hardwareType = htons(arpHeader->hardwareType);
-arpHeader->protype = htons(arpHeader->protype);
+	arpHeader->opcode = htons(arpHeader->opcode);
+	arpHeader->hardwareType = htons(arpHeader->hardwareType);
+	arpHeader->protype = htons(arpHeader->protype);
 
-length = sizeof(arp_ipv4) + sizeof(arp_ipv4);
-//netdev_transmit;
+	length = sizeof(arp_ipv4) + sizeof(arp_ipv4);
+	transmitNetdev(netdev, etherHeader,  ETH_P_ARP, length, arpData->destinationMac);
 }
 

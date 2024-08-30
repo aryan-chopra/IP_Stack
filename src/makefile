@@ -1,2 +1,2 @@
 arp.out: arp.c
-	gcc -I../includes arp.c netdev.c -o arp.out
+	gcc -I../includes main.c arp.c netdev.c ethernet.c tun.c -o main.out

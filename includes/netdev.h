@@ -9,7 +9,7 @@ typedef struct{
 }Netdev;
 
 void initNetdev(Netdev *device, char *address, char *hardwareAddress);
-void transmit(Netdev *device, EthernetHeader *ethHeader, uint16_t ethernetType, int length, unsigned char *destination);
+void transmitNetdev(Netdev *device, EthernetHeader *ethHeader, uint16_t ethernetType, int length, unsigned char *destination);
 
 #endif
 

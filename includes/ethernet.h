@@ -11,5 +11,7 @@ typedef struct{
 	unsigned char payload[];
 }__attribute__((packed)) EthernetHeader;
 
+EthernetHeader* initializeEthernet(char *buffer);
+
 #endif
 
