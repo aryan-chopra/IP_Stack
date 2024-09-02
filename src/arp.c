@@ -14,7 +14,7 @@ ArpCacheEntry cache[ARP_CACHE_LEN];
 
 void initArp() {
 	memset(cache, 0, ARP_CACHE_LEN * sizeof(ArpCacheEntry));
-	logFile = open("log.txt", O_WRONLY | O_APPEND);	
+	logFile = open("../log.txt", O_WRONLY | O_APPEND);	
 }
 
 int insertArpEntry(ArpHeader *header, arp_ipv4 *data) {
