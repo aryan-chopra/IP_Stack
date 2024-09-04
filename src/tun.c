@@ -24,9 +24,10 @@ int allocTap() {
 	memset(&ifr, 0, sizeof(ifr));
 
 	ifr.ifr_flags = IFF_TAP | IFF_NO_PI;
-	/*if (*dev) {
-		strncpy(ifr.ifr_name, dev, IFNAMSIZ);
-	} */
+	/* if (*name) {
+		strncpy(ifr.ifr_name, name, IFNAMSIZ);
+	} 
+  printf("Name not empty\n"); */
 
 	err = ioctl(device, TUNSETIFF, (void *) &ifr);
 	if (err < 0) {
@@ -35,7 +36,9 @@ int allocTap() {
 		return err;
 	}
 
-	//strcpy(dev, ifr.ifr_name);
+  /* printf("Size of name: %d\n", sizeof(ifr.ifr_name));
+	strncpy(name, ifr.ifr_name, sizeof(ifr.ifr_name));
+  printf("copied!\n"); */
 	return device;
 }
 
@@ -48,7 +51,7 @@ int initTap() {
 	char *command = malloc(250);
 
 	//Set interface up
-	sprintf(command, "sudo ip link set dev %s up", "tap0");
+	sprintf(command, "sudo ip link set dev %s up", "tap0"); 
 	system(command);
 
 	//Set interface route

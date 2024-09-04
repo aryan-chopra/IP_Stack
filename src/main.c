@@ -5,26 +5,37 @@
 
 #include "arp.h"
 #include "ethernet.h"
+#include "icmp.h"
+#include "ip.h"
 #include "netdev.h"
 #include "tap.h"
+#include "printHeaders.h"
 
 void handleFrame(Netdev *netdev, EthernetHeader *header) {
 	switch(header->payloadType) {
 		case ETH_P_ARP:
+      logEthernetPacket(header, 1);
+      printf("Got Arp\n");
 			incomingRequest(netdev, header);
 			break;
 		case ETH_P_IP:
-			printf("IPvn");
+      printf("Got ICMP\n");
+      ipIncoming(netdev, header);
 			break;
 		default:
-			printf("Unrecognized\n");
+			//printf("Unrecognized\n");
 	}
 }
 
 int main() {
 	Netdev netdev;
 
+  openFile();
+
 	printf("Size: %d\n", sizeof(EthernetHeader));
+
+  /* char* name = calloc(20, 1);
+  name = "tap0"; */
 
 	int tapDevice = initTap();
 	printf("%d\n", tapDevice);

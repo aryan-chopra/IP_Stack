@@ -8,6 +8,7 @@
 #include "netdev.h"
 #include "ethernet.h"
 #include "tap.h"
+#include "printHeaders.h"
 
 void initNetdev(Netdev *netdev, char *ipAddress, char *macAddress) {
 	memset(netdev, 0, sizeof(netdev));
@@ -27,12 +28,15 @@ void initNetdev(Netdev *netdev, char *ipAddress, char *macAddress) {
 void transmitNetdev(Netdev *netdev, EthernetHeader *ethHeader, uint16_t ethertype, int length, unsigned char *destination) {
 	ethHeader->payloadType= htons(ethertype);
 
-	memcpy(ethHeader->sourceMac, netdev->macOctets, 6);
 	memcpy(ethHeader->destinationMac, destination, 6);
+	memcpy(ethHeader->sourceMac, netdev->macOctets, 6);
 
 	length += sizeof(EthernetHeader);
 
+  logEthernetPacket(ethHeader, 0);
+
 	printf("len: %d\n", length);
-	writeTun((char *) ethHeader, length);
+	int status = writeTun((char *) ethHeader, length);
+  printf("write status = %d\n", status);
 }
 
