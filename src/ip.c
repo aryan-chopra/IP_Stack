@@ -6,6 +6,7 @@
 #include "ethernet.h"
 #include "icmp.h"
 #include "ip.h"
+#include "log.h"
 #include "netdev.h"
 
 void ipIncoming(Netdev *netdev, EthernetHeader *ethHeader) {
@@ -41,6 +42,7 @@ void ipIncoming(Netdev *netdev, EthernetHeader *ethHeader) {
 
   switch (ipHeader->protocol) {
     case ICMP:
+      log(ipHeader, 1);
       handleIcmp(ipHeader);
       ipReply(netdev, ethHeader);
       break;
@@ -67,6 +69,7 @@ void ipReply(Netdev *netdev, EthernetHeader *ethHeader){
   ipHeader->checksum = 0;
   ipHeader->checksum = checksum(ipHeader, ipHeader->headerLength * 4);
 
+  log(ipHeader, 0);
   transmitNetdev(netdev, ethHeader, ETH_P_IP, length, ethHeader->sourceMac); 
 }
 

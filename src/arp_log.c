@@ -38,24 +38,34 @@ void logArpMac(unsigned char mac[6]) {
 	  writeArpLog(logText);
 }
 
-void logArpData(arp_ipv4 *arpData) {
+void logArpHeader(arp_ipv4 *arpData, int incoming) {
 	char *logText = (char *)calloc(50, 1);
 
-	snprintf(logText, 50, "Incoming ARP request from IP  : %"PRIu32"\n", arpData->sourceIp); 
+  if (incoming) {
+    snprintf(logText, 50, "Incoming ARP Header:\n");
+  }
+
+  else {
+    smprintf(logText, 50, "Outgoing ARP Header:\n");
+  }
+
+  writeArpLog(logText);
+
+	snprintf(logText, 50, "Source IP         : %"PRIu32"\n", arpData->sourceIp); 
 	writeArpLog(logText);
 
-	snprintf(logText, 50, "Incoming ARP request to IP    : %"PRIu32"\n", arpData->destinationIp);
+	snprintf(logText, 50, "Destination IP    : %"PRIu32"\n", arpData->destinationIp);
 	writeArpLog(logText);
 
-	snprintf(logText, 50, "Incoming ARP request from MAC : ");
+	snprintf(logText, 50, "Source MAC        : ");
 	writeArpLog(logText);
 	logArpMac(arpData->sourceMac);
 
-	snprintf(logText, 50, "Incoming ARP request to MAC   : ");
+	snprintf(logText, 50, "Destination MAC   : ");
 	writeArpLog(logText);
 	logArpMac(arpData->destinationMac);
 
-	sprintf(logText, "-------------------------------------------------------------------------\n");
+	sprintf(logText, "\n-------------------------------------------------------------------------\n\n");
 	writeArpLog(logText);
 }
 

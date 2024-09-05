@@ -36,43 +36,43 @@ void logIpHeader(IpHeader *hdr, int incoming) {
 
   writeIpLog(text);
 
-  snprintf(text, 50, "Header Length: %"PRIu8"\n", hdr->headerLength);
+  snprintf(text, 50, "Header Length        : %"PRIu8"\n", hdr->headerLength);
   writeIpLog(text);
 
-  snprintf(text, 50, "Version        : %"PRIu8"\n", hdr->version);
+  snprintf(text, 50, "Version              : %"PRIu8"\n", hdr->version);
   writeIpLog(text);
 
-  snprintf(text, 50, "tos            : %"PRIu8"\n", hdr->tos);
+  snprintf(text, 50, "tos                  : %"PRIu8"\n", hdr->tos);
   writeIpLog(text);
 
-  snprintf(text, 50, "totalLength    : %"PRIu16"\n", hdr->totalLength);
+  snprintf(text, 50, "totalLength          : %"PRIu16"\n", hdr->totalLength);
   writeIpLog(text);
 
-  snprintf(text, 50, "ID             : %"PRIu16"\n", hdr->id);
+  snprintf(text, 50, "ID                   : %"PRIu16"\n", hdr->id);
   writeIpLog(text);
 
-  snprintf(text, 50, "flags          : %"PRIu16"\n", hdr->flags);
+  snprintf(text, 50, "flags                : %"PRIu16"\n", hdr->flags);
   writeIpLog(text);
 
-  snprintf(text, 50, "fragmentOffset : %"PRIu16"\n", hdr->fragmentOffset);
+  snprintf(text, 50, "fragmentOffset       : %"PRIu16"\n", hdr->fragmentOffset);
   writeIpLog(text);
 
-  snprintf(text, 50, "ttl            : %"PRIu8"\n", hdr->ttl);
+  snprintf(text, 50, "ttl                  : %"PRIu8"\n", hdr->ttl);
   writeIpLog(text);
 
-  snprintf(text, 50, "protocol       : %"PRIu8"\n", hdr->protocol);
+  snprintf(text, 50, "protocol             : %"PRIu8"\n", hdr->protocol);
   writeIpLog(text);
 
-  snprintf(text, 50, "checksum       : %"PRIu16"\n", hdr->checksum);
+  snprintf(text, 50, "checksum             : %"PRIu16"\n", hdr->checksum);
   writeIpLog(text);
 
-  snprintf(text, 50, "Sender Address : %"PRIu32"\n", hdr->sourceAddress);
+  snprintf(text, 50, "Sender Address       : %"PRIu32"\n", hdr->sourceAddress);
   writeIpLog(text);
 
-  snprintf(text, 50, "destination    : %"PRIu32"\n", hdr->destinationAddress);
+  snprintf(text, 50, "destination          : %"PRIu32"\n", hdr->destinationAddress);
   writeIpLog(text);
 
-  snprintf(text, 50, "\nxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n\n");
+  snprintf(text, 50, "\n-------------------------------------------------------------------------------------------\n\n");
   writeIpLog(text);
 
   free(text);

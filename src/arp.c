@@ -60,6 +60,9 @@ void incomingRequest(Netdev *netdev, EthernetHeader *header) {
 
 	ArpHeader *arpHeader;
 	arp_ipv4 *arpData;
+
+  log(arpData, 0);
+
 	int merge = 0;
 
 	arpHeader = (ArpHeader *) header->payload;
@@ -119,6 +122,8 @@ void replyArp(Netdev *netdev, EthernetHeader *etherHeader, ArpHeader *arpHeader)
 	arpHeader->protype = htons(arpHeader->protype);
 
 	length = sizeof(ArpHeader) + sizeof(arp_ipv4);
+
+  log(arpData, 0);
 	transmitNetdev(netdev, etherHeader,  ETH_P_ARP, length, arpData->destinationMac);
 }
 

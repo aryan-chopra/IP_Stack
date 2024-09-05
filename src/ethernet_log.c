@@ -40,27 +40,27 @@ void logEthernetHeader(EthernetHeader *ethHeader, int incoming) {
   char *text = calloc(50, 1);
 
   if (incoming) {
-    snprintf(text, 50, "Ethernet header incoming:\n");
+    snprintf(text, 50, "Incoming Ethernet Header:\n");
   }
 
   else {
-    snprintf(text, 50, "Ethernet header outgoing:\n");
+    snprintf(text, 50, "Outgoing Ethernet Header:\n");
   }
 
   writeEthLog(text);
 
-  snprintf(text, 50, "Destination Mac: ");
+  snprintf(text, 50, "Destination Mac          : ");
   writeEthLog(text);
   logEthMac(ethHeader->destinationMac);
 
-  snprintf(text, 50, "Source Mac     : ");
+  snprintf(text, 50, "Source Mac               : ");
   writeEthLog(text);
   logEthMac(ethHeader->sourceMac);
 
-  snprintf(text, 50, "Payload type   : %"PRIu16"\n", ethHeader->payloadType);
+  snprintf(text, 50, "Payload type             : %"PRIu16"\n", ethHeader->payloadType);
   writeEthLog(text);
 
-  snprintf(text, 50, "\nxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n\n");
+  snprintf(text, 50, "\n-----------------------------------------------------------------------------------------------------\n\n");
   writeEthLog(text);
 
   free(text);

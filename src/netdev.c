@@ -7,6 +7,7 @@
 
 #include "netdev.h"
 #include "ethernet.h"
+#include "log.h"
 #include "tap.h"
 
 void initNetdev(Netdev *netdev, char *ipAddress, char *macAddress) {
@@ -32,8 +33,8 @@ void transmitNetdev(Netdev *netdev, EthernetHeader *ethHeader, uint16_t ethertyp
 
 	length += sizeof(EthernetHeader);
 
-	printf("len: %d\n", length);
+  log(ethHeader, 0);
+
 	int status = writeTun((char *) ethHeader, length);
-  printf("write status = %d\n", status);
 }
 
