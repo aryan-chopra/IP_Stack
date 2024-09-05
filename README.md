@@ -5,7 +5,6 @@ This project implements core functionalities of the IP Stack, focusing on the Ad
 ## Table of Contents
 - [Overview](#overview)
 - [Features](#features)
-- [Technologies](#technologies)
 - [Installation](#installation)
 - [Usage](#usage)
 
@@ -52,6 +51,39 @@ To get a local copy up and running, follow these steps.
     ```
 
 ## Usage
+### ARP Implementation (ARP Reply)
+
+The program responds to incoming ARP requests. When a user on the network sends an ARP request using the `arping` command, the program detects the request and responds with an ARP reply, providing the MAC address associated with its IP address.
+
+#### Usage:
+
+1. From a terminal, use the `arping` command targeting the interface device running this program:
+    ```bash
+    arping -I <interface_name> <program_host_ip>
+    ```
+
+    For example:
+    ```bash
+    ❯ arping -c4 -I tap0 10.0.0.4
+    ```
+
+2. The program running on `<program_host_ip>` will receive the ARP request and automatically send back an ARP reply with its MAC address.
+
+3. The `arping` command on the sender’s machine will display the reply, similar to:
+```bash
+❯ arping -c4 -I tap0 10.0.0.4
+ARPING 10.0.0.4 from 192.168.86.61 tap0
+Unicast reply from 10.0.0.4 [00:0C:29:6D:50:25]  0.890ms
+Unicast reply from 10.0.0.4 [00:0C:29:6D:50:25]  1.033ms
+Unicast reply from 10.0.0.4 [00:0C:29:6D:50:25]  1.013ms
+Unicast reply from 10.0.0.4 [00:0C:29:6D:50:25]  0.782ms
+Sent 4 probes (1 broadcast(s))
+Received 4 response(s)
+```
+
+
+
+### ICMP implementation
 The program acts as a responder to incoming ICMP Echo Requests. When a user on the network sends a ping request using the standard Linux ping command, the program detects the request and responds with an appropriate ICMP Echo Reply.
 From a terminal, use the ping command targeting the machine running this program:
 
@@ -61,13 +93,13 @@ ping <program_host_ip>
 
 For example:
 ```bash
-ping -c3 10.0.0.4
+❯ ping -c3 10.0.0.4
 ```
 
 Response:
 
 ```bash
-ping -c3 10.0.0.4
+❯ ping -c3 10.0.0.4
 PING 10.0.0.4 (10.0.0.4) 56(84) bytes of data.
 64 bytes from 10.0.0.4: icmp_seq=1 ttl=64 time=0.562 ms
 64 bytes from 10.0.0.4: icmp_seq=2 ttl=64 time=0.400 ms
