@@ -9,6 +9,8 @@
 #include "ip.h"
 #include "log_location.h"
 
+#define SIZE 100
+
 int ipLogFile; 
 
 void openIpLog() {
@@ -24,55 +26,55 @@ void writeIpLog(char *text) {
 }
 
 void logIpHeader(IpHeader *hdr, int incoming) {
-  char *text = calloc(50, 1);
+  char *text = calloc(SIZE, 1);
 
   if (incoming) {
-    snprintf(text, 50, "Incoming IP Header:\n");   
+    snprintf(text, SIZE, "Incoming IP Header:\n\n");   
   }
 
   else {
-    snprintf(text, 50, "Outgoing IP Header:\n");
+    snprintf(text, SIZE, "Outgoing IP Header:\n\n");
   }
 
   writeIpLog(text);
 
-  snprintf(text, 50, "Header Length        : %"PRIu8"\n", hdr->headerLength);
+  snprintf(text, SIZE, "Header Length        : %"PRIu8"\n", hdr->headerLength);
   writeIpLog(text);
 
-  snprintf(text, 50, "Version              : %"PRIu8"\n", hdr->version);
+  snprintf(text, SIZE, "Version              : %"PRIu8"\n", hdr->version);
   writeIpLog(text);
 
-  snprintf(text, 50, "tos                  : %"PRIu8"\n", hdr->tos);
+  snprintf(text, SIZE, "tos                  : %"PRIu8"\n", hdr->tos);
   writeIpLog(text);
 
-  snprintf(text, 50, "totalLength          : %"PRIu16"\n", hdr->totalLength);
+  snprintf(text, SIZE, "totalLength          : %"PRIu16"\n", hdr->totalLength);
   writeIpLog(text);
 
-  snprintf(text, 50, "ID                   : %"PRIu16"\n", hdr->id);
+  snprintf(text, SIZE, "ID                   : %"PRIu16"\n", hdr->id);
   writeIpLog(text);
 
-  snprintf(text, 50, "flags                : %"PRIu16"\n", hdr->flags);
+  snprintf(text, SIZE, "flags                : %"PRIu16"\n", hdr->flags);
   writeIpLog(text);
 
-  snprintf(text, 50, "fragmentOffset       : %"PRIu16"\n", hdr->fragmentOffset);
+  snprintf(text, SIZE, "fragmentOffset       : %"PRIu16"\n", hdr->fragmentOffset);
   writeIpLog(text);
 
-  snprintf(text, 50, "ttl                  : %"PRIu8"\n", hdr->ttl);
+  snprintf(text, SIZE, "ttl                  : %"PRIu8"\n", hdr->ttl);
   writeIpLog(text);
 
-  snprintf(text, 50, "protocol             : %"PRIu8"\n", hdr->protocol);
+  snprintf(text, SIZE, "protocol             : %"PRIu8"\n", hdr->protocol);
   writeIpLog(text);
 
-  snprintf(text, 50, "checksum             : %"PRIu16"\n", hdr->checksum);
+  snprintf(text, SIZE, "checksum             : %"PRIu16"\n", hdr->checksum);
   writeIpLog(text);
 
-  snprintf(text, 50, "Sender Address       : %"PRIu32"\n", hdr->sourceAddress);
+  snprintf(text, SIZE, "Sender Address       : %"PRIu32"\n", hdr->sourceAddress);
   writeIpLog(text);
 
-  snprintf(text, 50, "destination          : %"PRIu32"\n", hdr->destinationAddress);
+  snprintf(text, SIZE, "destination          : %"PRIu32"\n", hdr->destinationAddress);
   writeIpLog(text);
 
-  snprintf(text, 50, "\n-------------------------------------------------------------------------------------------\n\n");
+  snprintf(text, SIZE, "\n-------------------------------------------------------------------------------------------\n\n");
   writeIpLog(text);
 
   free(text);

@@ -42,7 +42,7 @@ void ipIncoming(Netdev *netdev, EthernetHeader *ethHeader) {
 
   switch (ipHeader->protocol) {
     case ICMP:
-      log(ipHeader, 1);
+      log(ipHeader, L_IP | L_INCOMING);
       handleIcmp(ipHeader);
       ipReply(netdev, ethHeader);
       break;
@@ -69,7 +69,7 @@ void ipReply(Netdev *netdev, EthernetHeader *ethHeader){
   ipHeader->checksum = 0;
   ipHeader->checksum = checksum(ipHeader, ipHeader->headerLength * 4);
 
-  log(ipHeader, 0);
+  log(ipHeader, L_IP);
   transmitNetdev(netdev, ethHeader, ETH_P_IP, length, ethHeader->sourceMac); 
 }
 

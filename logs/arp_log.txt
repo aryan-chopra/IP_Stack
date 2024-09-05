@@ -1,20 +1,18 @@
-Incoming ARP request from IP  : 262144
-Incoming ARP request to IP    : 157115864
-Incoming ARP request from MAC : e0:62:5d:09:ea:7f
-Incoming ARP request to MAC   : 00:00:00:00:00:00
+Incoming ARP Header:
+
+Source IP         : 1029089472
+Destination IP    : 67108874
+Source MAC        : e6:00:2d:cc:fc:dc
+Destination MAC   : 00:00:00:00:00:00
+
 -------------------------------------------------------------------------
-Incoming ARP request from IP  : 262144
-Incoming ARP request to IP    : 157115864
-Incoming ARP request from MAC : e0:62:5d:09:ea:7f
-Incoming ARP request to MAC   : 00:00:00:00:00:00
+
+Outgoing ARP Header:
+
+Source IP         : 67108874
+Destination IP    : 1029089472
+Source MAC        : 00:0c:29:6d:50:25
+Destination MAC   : e6:00:2d:cc:fc:dc
+
 -------------------------------------------------------------------------
-Incoming ARP request from IP  : 262144
-Incoming ARP request to IP    : 157115864
-Incoming ARP request from MAC : e0:62:5d:09:ea:7f
-Incoming ARP request to MAC   : 00:00:00:00:00:00
--------------------------------------------------------------------------
-Incoming ARP request from IP  : 262144
-Incoming ARP request to IP    : 157115864
-Incoming ARP request from MAC : e0:62:5d:09:ea:7f
-Incoming ARP request to MAC   : 00:00:00:00:00:00
--------------------------------------------------------------------------
+

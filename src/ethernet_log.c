@@ -9,6 +9,8 @@
 #include "ethernet.h"
 #include "ethernet_log.h"
 
+#define SIZE 100
+
 int ethLogFile;
 
 void openEthernetLog() {
@@ -37,30 +39,30 @@ void logEthMac(unsigned char mac[6]) {
 }
 
 void logEthernetHeader(EthernetHeader *ethHeader, int incoming) {
-  char *text = calloc(50, 1);
+  char *text = calloc(SIZE, 1);
 
   if (incoming) {
-    snprintf(text, 50, "Incoming Ethernet Header:\n");
+    snprintf(text, SIZE, "Incoming Ethernet Header:\n\n");
   }
 
   else {
-    snprintf(text, 50, "Outgoing Ethernet Header:\n");
+    snprintf(text, SIZE, "Outgoing Ethernet Header:\n\n");
   }
 
   writeEthLog(text);
 
-  snprintf(text, 50, "Destination Mac          : ");
+  snprintf(text, SIZE, "Destination Mac          : ");
   writeEthLog(text);
   logEthMac(ethHeader->destinationMac);
 
-  snprintf(text, 50, "Source Mac               : ");
+  snprintf(text, SIZE, "Source Mac               : ");
   writeEthLog(text);
   logEthMac(ethHeader->sourceMac);
 
-  snprintf(text, 50, "Payload type             : %"PRIu16"\n", ethHeader->payloadType);
+  snprintf(text, SIZE, "Payload type             : %"PRIu16"\n", ethHeader->payloadType);
   writeEthLog(text);
 
-  snprintf(text, 50, "\n-----------------------------------------------------------------------------------------------------\n\n");
+  snprintf(text, SIZE, "\n-------------------------------------------------\n\n");
   writeEthLog(text);
 
   free(text);

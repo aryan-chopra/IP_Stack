@@ -9,6 +9,8 @@
 #include "arp.h"
 #include "arp_log.h"
 
+#define SIZE 100
+
 int arpLogFile;
 
 void openArpLog() {
@@ -24,48 +26,50 @@ void writeArpLog(char *text) {
 }
 
 void logArpMac(unsigned char mac[6]) {
-	unsigned char logText[4];
+	unsigned char text[4];
 
 	  for (int index = 0; index < 5; index++) {
-	  snprintf(logText, 4, "%02x:", mac[index]);
-	  writeArpLog(logText); 
+	  snprintf(text, 4, "%02x:", mac[index]);
+	  writeArpLog(text); 
 	  }
 
-	  snprintf(logText, 3, "%02x", mac[5]);
-	  writeArpLog(logText);
+	  snprintf(text, 3, "%02x", mac[5]);
+	  writeArpLog(text);
 
-	  snprintf(logText, 3, "\n");
-	  writeArpLog(logText);
+	  snprintf(text, 3, "\n");
+	  writeArpLog(text);
 }
 
 void logArpHeader(arp_ipv4 *arpData, int incoming) {
-	char *logText = (char *)calloc(50, 1);
+	char *text = (char *)calloc(SIZE, 1);
 
   if (incoming) {
-    snprintf(logText, 50, "Incoming ARP Header:\n");
+    snprintf(text, SIZE, "Incoming ARP Header:\n\n");
   }
 
   else {
-    smprintf(logText, 50, "Outgoing ARP Header:\n");
+    snprintf(text, SIZE, "Outgoing ARP Header:\n\n");
   }
 
-  writeArpLog(logText);
+  writeArpLog(text);
 
-	snprintf(logText, 50, "Source IP         : %"PRIu32"\n", arpData->sourceIp); 
-	writeArpLog(logText);
+	snprintf(text, SIZE, "Source IP         : %"PRIu32"\n", arpData->sourceIp); 
+	writeArpLog(text);
 
-	snprintf(logText, 50, "Destination IP    : %"PRIu32"\n", arpData->destinationIp);
-	writeArpLog(logText);
+	snprintf(text, SIZE, "Destination IP    : %"PRIu32"\n", arpData->destinationIp);
+	writeArpLog(text);
 
-	snprintf(logText, 50, "Source MAC        : ");
-	writeArpLog(logText);
+	snprintf(text, SIZE, "Source MAC        : ");
+	writeArpLog(text);
 	logArpMac(arpData->sourceMac);
 
-	snprintf(logText, 50, "Destination MAC   : ");
-	writeArpLog(logText);
+	snprintf(text, SIZE, "Destination MAC   : ");
+	writeArpLog(text);
 	logArpMac(arpData->destinationMac);
 
-	sprintf(logText, "\n-------------------------------------------------------------------------\n\n");
-	writeArpLog(logText);
+	sprintf(text, "\n-------------------------------------------------------------------------\n\n");
+	writeArpLog(text);
+
+  free(text);
 }
 

@@ -33,7 +33,7 @@ void transmitNetdev(Netdev *netdev, EthernetHeader *ethHeader, uint16_t ethertyp
 
 	length += sizeof(EthernetHeader);
 
-  log(ethHeader, 0);
+  log(ethHeader, L_ETHERNET);
 
 	int status = writeTun((char *) ethHeader, length);
 }

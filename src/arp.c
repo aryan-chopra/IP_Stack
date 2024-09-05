@@ -7,6 +7,7 @@
 #include <unistd.h>
 
 #include "arp.h"
+#include "log.h"
 #include "netdev.h"
 
 ArpCacheEntry cache[ARP_CACHE_LEN];
@@ -60,19 +61,16 @@ void incomingRequest(Netdev *netdev, EthernetHeader *header) {
 
 	ArpHeader *arpHeader;
 	arp_ipv4 *arpData;
-
-  log(arpData, 0);
-
 	int merge = 0;
 
 	arpHeader = (ArpHeader *) header->payload;
-
 	arpHeader->hardwareType = ntohs(arpHeader->hardwareType);
 	arpHeader->protype = ntohs(arpHeader->protype);
 	arpHeader->opcode = ntohs(arpHeader->opcode);
 
 	arpData = (arp_ipv4 *) arpHeader->data;
 
+  log(arpData, L_ARP | L_INCOMING);
 
 	if (arpHeader->hardwareType != ARP_ETHERNET) {
 		printf("Only ethernet is supported\n");
@@ -123,7 +121,7 @@ void replyArp(Netdev *netdev, EthernetHeader *etherHeader, ArpHeader *arpHeader)
 
 	length = sizeof(ArpHeader) + sizeof(arp_ipv4);
 
-  log(arpData, 0);
+  log(arpData, L_ARP);
 	transmitNetdev(netdev, etherHeader,  ETH_P_ARP, length, arpData->destinationMac);
 }
 

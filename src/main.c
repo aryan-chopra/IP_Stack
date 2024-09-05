@@ -3,20 +3,19 @@
 #include <unistd.h>
 #include <fcntl.h>
 
-#include "log.h"
-
 #include "arp.h"
 #include "ethernet.h"
 #include "icmp.h"
 #include "ip.h"
+#include "log.h"
 #include "netdev.h"
 #include "tap.h"
 
 void handleFrame(Netdev *netdev, EthernetHeader *header) {
-  log (header, 1);
 
   switch(header->payloadType) {
     case ETH_P_ARP:
+      log(header, L_ETHERNET | L_INCOMING);
       printf("Got Arp\n");
       incomingRequest(netdev, header);
       break;
@@ -30,7 +29,7 @@ void handleFrame(Netdev *netdev, EthernetHeader *header) {
 }
 
 int main() {
-  openLogsFiles();
+  openLogFiles();
 
   Netdev netdev;
   int tapDevice = initTap();

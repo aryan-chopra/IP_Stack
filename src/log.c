@@ -1,3 +1,5 @@
+#include <stdio.h>
+
 #include "arp_log.h"
 #include "ethernet_log.h"
 #include "ip_log.h"
@@ -9,15 +11,22 @@ void openLogFiles() {
   openEthernetLog();
 }
 
-void log(arp_ipv4 *arpData, int incoming) {
-  logArpHeader(arpData, incoming);
-}
+void log(void *header, uint8_t flags) {
+  uint8_t headerType = flags & 0x0E;
+  uint8_t incoming = flags & 0x01;
 
-void log(EthernetHeader *ethHeader, int incoming) {
-  logEthernetHeader(ethHeader, incoming);
-}
-
-void log(IpHeader *ipHeader, int incoming) {
-  logIpHeader(ipHeader, incoming);
+  switch(headerType) {
+    case L_ARP:
+      logArpHeader((arp_ipv4 *)header, incoming);
+      break;
+    case L_ETHERNET:
+      logEthernetHeader((EthernetHeader *)header, incoming);
+      break;
+    case L_IP:
+      logIpHeader((IpHeader *)header, incoming);
+      break;
+    default:
+      printf("Unidentified header type\n");
+  }
 }
 
