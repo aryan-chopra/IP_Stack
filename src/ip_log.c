@@ -31,7 +31,7 @@ void writeIpLog(char *text) {
   write(ipLogFile, text, strlen(text));
 }
 
-void logIpAddress(uint32_t address) {
+static void logIpAddress(uint32_t address) {
   char *text = calloc(SIZE, 1);
 
   snprintf(text, SIZE, "%s\n", inet_ntoa(*((struct in_addr *)&address)));
