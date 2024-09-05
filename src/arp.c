@@ -7,14 +7,13 @@
 #include <unistd.h>
 
 #include "arp.h"
+#include "arp_log.h"
 #include "netdev.h"
 
-int logFile;
 ArpCacheEntry cache[ARP_CACHE_LEN];
 
 void initArp() {
 	memset(cache, 0, ARP_CACHE_LEN * sizeof(ArpCacheEntry));
-	logFile = open("../log.txt", O_WRONLY | O_APPEND);	
 }
 
 int insertArpEntry(ArpHeader *header, arp_ipv4 *data) {
@@ -57,43 +56,6 @@ int updateArpTable(ArpHeader *header, arp_ipv4 *data) {
 	return 0;
 }
 
-void logToFile(char *text) {
-	write(logFile, text, strlen(text)); 
-}
-
-void logMac(unsigned char mac[6]) {
-	unsigned char logText[4];
-
-	  for (int index = 0; index < 5; index++) {
-	  snprintf(logText, 4, "%02x:", mac[index]);
-	  logToFile(logText); 
-	  }
-	  snprintf(logText, 3, "%02x", mac[5]);
-	  logToFile(logText);
-	  snprintf(logText, 3, "\n");
-	  logToFile(logText);
-}
-
-void logArpData(arp_ipv4 *arpData) {
-	char *logText = (char *)malloc(1000);
-
-	snprintf(logText, 500, "Incoming ARP request from IP  : %"PRIu32"\n", arpData->sourceIp); 
-	logToFile(logText);
-
-	snprintf(logText, 500, "Incoming ARP request to IP    : %"PRIu32"\n", arpData->destinationIp);
-	logToFile(logText);
-
-	snprintf(logText, 500, "Incoming ARP request from MAC : ");
-	logToFile(logText);
-	logMac(arpData->sourceMac);
-
-	snprintf(logText, 500, "Incoming ARP request to MAC   : ");
-	logToFile(logText);
-	logMac(arpData->destinationMac);
-
-	sprintf(logText, "-------------------------------------------------------------------------\n");
-	logToFile(logText);
-}
 
 void incomingRequest(Netdev *netdev, EthernetHeader *header) {
 
