@@ -7,7 +7,6 @@
 #include <unistd.h>
 
 #include "arp.h"
-#include "arp_log.h"
 #include "netdev.h"
 
 ArpCacheEntry cache[ARP_CACHE_LEN];
@@ -62,8 +61,6 @@ void incomingRequest(Netdev *netdev, EthernetHeader *header) {
 	ArpHeader *arpHeader;
 	arp_ipv4 *arpData;
 	int merge = 0;
-
-	logArpData(arpData);
 
 	arpHeader = (ArpHeader *) header->payload;
 
