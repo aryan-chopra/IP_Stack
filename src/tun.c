@@ -10,7 +10,7 @@
 
 static int fd;
 
-int allocTap() {
+int allocTap(char *name) {
 	struct ifreq ifr;
 	int device, err;
 
@@ -24,10 +24,10 @@ int allocTap() {
 	memset(&ifr, 0, sizeof(ifr));
 
 	ifr.ifr_flags = IFF_TAP | IFF_NO_PI;
-	/* if (*name) {
+	if (*name) {
 		strncpy(ifr.ifr_name, name, IFNAMSIZ);
 	} 
-  printf("Name not empty\n"); */
+  printf("Name not empty\n");
 
 	err = ioctl(device, TUNSETIFF, (void *) &ifr);
 	if (err < 0) {
@@ -36,9 +36,7 @@ int allocTap() {
 		return err;
 	}
 
-  /* printf("Size of name: %d\n", sizeof(ifr.ifr_name));
 	strncpy(name, ifr.ifr_name, sizeof(ifr.ifr_name));
-  printf("copied!\n"); */
 	return device;
 }
 
@@ -46,16 +44,16 @@ int writeTun(char *buffer, int length) {
 	return write(fd, buffer, length);
 }
 
-int initTap() {
-	fd = allocTap();
+int initTap(char *name) {
+	fd = allocTap(name);
 	char *command = malloc(250);
 
 	//Set interface up
-	sprintf(command, "sudo ip link set dev %s up", "tap0"); 
+	sprintf(command, "sudo ip link set dev %s up", name); 
 	system(command);
 
 	//Set interface route
-	sprintf(command, "sudo ip route add dev %s 10.0.0.0/24", "tap0");
+	sprintf(command, "sudo ip route add dev %s 10.0.0.0/24", name);
 	system(command);	 
 
 	return fd;

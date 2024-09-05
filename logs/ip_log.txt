@@ -304,3 +304,343 @@ Destination Address  : 192.168.86.61
 
 -------------------------------------------------
 
+Incoming IP Header:
+
+Header Length        : 5
+Version              : 4
+tos                  : 0
+totalLength          : 84
+ID                   : 46547
+flags                : 0
+fragmentOffset       : 8
+ttl                  : 64
+protocol             : 1
+checksum             : 2630
+Sender Address       : 192.168.86.61
+Destination Address  : 10.0.0.4
+
+-------------------------------------------------
+
+Outgoing IP Header:
+
+Header Length        : 5
+Version              : 4
+tos                  : 0
+totalLength          : 21504
+ID                   : 46547
+flags                : 0
+fragmentOffset       : 8
+ttl                  : 64
+protocol             : 1
+checksum             : 2630
+Sender Address       : 10.0.0.4
+Destination Address  : 192.168.86.61
+
+-------------------------------------------------
+
+Incoming IP Header:
+
+Header Length        : 5
+Version              : 4
+tos                  : 0
+totalLength          : 84
+ID                   : 57299
+flags                : 0
+fragmentOffset       : 8
+ttl                  : 64
+protocol             : 1
+checksum             : 57413
+Sender Address       : 192.168.86.61
+Destination Address  : 10.0.0.4
+
+-------------------------------------------------
+
+Outgoing IP Header:
+
+Header Length        : 5
+Version              : 4
+tos                  : 0
+totalLength          : 21504
+ID                   : 57299
+flags                : 0
+fragmentOffset       : 8
+ttl                  : 64
+protocol             : 1
+checksum             : 57413
+Sender Address       : 10.0.0.4
+Destination Address  : 192.168.86.61
+
+-------------------------------------------------
+
+Incoming IP Header:
+
+Header Length        : 5
+Version              : 4
+tos                  : 0
+totalLength          : 84
+ID                   : 45781
+flags                : 0
+fragmentOffset       : 8
+ttl                  : 64
+protocol             : 1
+checksum             : 3396
+Sender Address       : 192.168.86.61
+Destination Address  : 10.0.0.4
+
+-------------------------------------------------
+
+Outgoing IP Header:
+
+Header Length        : 5
+Version              : 4
+tos                  : 0
+totalLength          : 21504
+ID                   : 45781
+flags                : 0
+fragmentOffset       : 8
+ttl                  : 64
+protocol             : 1
+checksum             : 3396
+Sender Address       : 10.0.0.4
+Destination Address  : 192.168.86.61
+
+-------------------------------------------------
+
+Incoming IP Header:
+
+Header Length        : 5
+Version              : 4
+tos                  : 0
+totalLength          : 84
+ID                   : 17689
+flags                : 0
+fragmentOffset       : 8
+ttl                  : 64
+protocol             : 1
+checksum             : 31488
+Sender Address       : 192.168.86.61
+Destination Address  : 10.0.0.4
+
+-------------------------------------------------
+
+Outgoing IP Header:
+
+Header Length        : 5
+Version              : 4
+tos                  : 0
+totalLength          : 21504
+ID                   : 17689
+flags                : 0
+fragmentOffset       : 8
+ttl                  : 64
+protocol             : 1
+checksum             : 31488
+Sender Address       : 10.0.0.4
+Destination Address  : 192.168.86.61
+
+-------------------------------------------------
+
+Incoming IP Header:
+
+Header Length        : 5
+Version              : 4
+tos                  : 0
+totalLength          : 84
+ID                   : 57729
+flags                : 0
+fragmentOffset       : 8
+ttl                  : 64
+protocol             : 1
+checksum             : 56983
+Sender Address       : 192.168.86.61
+Destination Address  : 10.0.0.4
+
+-------------------------------------------------
+
+Outgoing IP Header:
+
+Header Length        : 5
+Version              : 4
+tos                  : 0
+totalLength          : 21504
+ID                   : 57729
+flags                : 0
+fragmentOffset       : 8
+ttl                  : 64
+protocol             : 1
+checksum             : 56983
+Sender Address       : 10.0.0.4
+Destination Address  : 192.168.86.61
+
+-------------------------------------------------
+
+Incoming IP Header:
+
+Header Length        : 5
+Version              : 4
+tos                  : 0
+totalLength          : 84
+ID                   : 39045
+flags                : 0
+fragmentOffset       : 8
+ttl                  : 64
+protocol             : 1
+checksum             : 10132
+Sender Address       : 192.168.86.61
+Destination Address  : 10.0.0.4
+
+-------------------------------------------------
+
+Outgoing IP Header:
+
+Header Length        : 5
+Version              : 4
+tos                  : 0
+totalLength          : 21504
+ID                   : 39045
+flags                : 0
+fragmentOffset       : 8
+ttl                  : 64
+protocol             : 1
+checksum             : 10132
+Sender Address       : 10.0.0.4
+Destination Address  : 192.168.86.61
+
+-------------------------------------------------
+
+Incoming IP Header:
+
+Header Length        : 5
+Version              : 4
+tos                  : 0
+totalLength          : 84
+ID                   : 59272
+flags                : 0
+fragmentOffset       : 8
+ttl                  : 64
+protocol             : 1
+checksum             : 55440
+Sender Address       : 192.168.86.61
+Destination Address  : 10.0.0.4
+
+-------------------------------------------------
+
+Outgoing IP Header:
+
+Header Length        : 5
+Version              : 4
+tos                  : 0
+totalLength          : 21504
+ID                   : 59272
+flags                : 0
+fragmentOffset       : 8
+ttl                  : 64
+protocol             : 1
+checksum             : 55440
+Sender Address       : 10.0.0.4
+Destination Address  : 192.168.86.61
+
+-------------------------------------------------
+
+Incoming IP Header:
+
+Header Length        : 5
+Version              : 4
+tos                  : 0
+totalLength          : 84
+ID                   : 58421
+flags                : 0
+fragmentOffset       : 8
+ttl                  : 64
+protocol             : 1
+checksum             : 56291
+Sender Address       : 192.168.86.61
+Destination Address  : 10.0.0.4
+
+-------------------------------------------------
+
+Outgoing IP Header:
+
+Header Length        : 5
+Version              : 4
+tos                  : 0
+totalLength          : 21504
+ID                   : 58421
+flags                : 0
+fragmentOffset       : 8
+ttl                  : 64
+protocol             : 1
+checksum             : 56291
+Sender Address       : 10.0.0.4
+Destination Address  : 192.168.86.61
+
+-------------------------------------------------
+
+Incoming IP Header:
+
+Header Length        : 5
+Version              : 4
+tos                  : 0
+totalLength          : 84
+ID                   : 44857
+flags                : 0
+fragmentOffset       : 8
+ttl                  : 64
+protocol             : 1
+checksum             : 4320
+Sender Address       : 192.168.86.61
+Destination Address  : 10.0.0.4
+
+-------------------------------------------------
+
+Outgoing IP Header:
+
+Header Length        : 5
+Version              : 4
+tos                  : 0
+totalLength          : 21504
+ID                   : 44857
+flags                : 0
+fragmentOffset       : 8
+ttl                  : 64
+protocol             : 1
+checksum             : 4320
+Sender Address       : 10.0.0.4
+Destination Address  : 192.168.86.61
+
+-------------------------------------------------
+
+Incoming IP Header:
+
+Header Length        : 5
+Version              : 4
+tos                  : 0
+totalLength          : 84
+ID                   : 2874
+flags                : 0
+fragmentOffset       : 8
+ttl                  : 64
+protocol             : 1
+checksum             : 46303
+Sender Address       : 192.168.86.61
+Destination Address  : 10.0.0.4
+
+-------------------------------------------------
+
+Outgoing IP Header:
+
+Header Length        : 5
+Version              : 4
+tos                  : 0
+totalLength          : 21504
+ID                   : 2874
+flags                : 0
+fragmentOffset       : 8
+ttl                  : 64
+protocol             : 1
+checksum             : 46303
+Sender Address       : 10.0.0.4
+Destination Address  : 192.168.86.61
+
+-------------------------------------------------
+

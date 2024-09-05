@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include <unistd.h>
 #include <fcntl.h>
 
@@ -32,7 +33,11 @@ int main() {
   openLogFiles();
 
   Netdev netdev;
-  int tapDevice = initTap();
+
+  char *name = calloc(20, 1);
+  strcpy(name, "tap0");
+
+  int tapDevice = initTap(name);
 
   initNetdev(&netdev, "10.0.0.4", "00:0c:29:6d:50:25");
   initArp();
