@@ -1,3 +1,4 @@
+#include <arpa/inet.h>
 #include <errno.h>
 #include <inttypes.h>
 #include <fcntl.h>
@@ -11,6 +12,11 @@
 
 #define SIZE 100
 
+#define FIRST_OCTATE 0xFF000000
+#define SECOND_OCTATE 0xFF0000
+#define THIRD_OCTATE 0xFF00
+#define FOURTH_OCTATE 0xFF
+
 int ipLogFile; 
 
 void openIpLog() {
@@ -23,6 +29,16 @@ void openIpLog() {
 
 void writeIpLog(char *text) {
   write(ipLogFile, text, strlen(text));
+}
+
+void logIpAddress(uint32_t address) {
+  char *text = calloc(SIZE, 1);
+
+  snprintf(text, SIZE, "%s\n", inet_ntoa(*((struct in_addr *)&address)));
+        
+  writeIpLog(text);
+
+  free(text);
 }
 
 void logIpHeader(IpHeader *hdr, int incoming) {
@@ -68,13 +84,15 @@ void logIpHeader(IpHeader *hdr, int incoming) {
   snprintf(text, SIZE, "checksum             : %"PRIu16"\n", hdr->checksum);
   writeIpLog(text);
 
-  snprintf(text, SIZE, "Sender Address       : %"PRIu32"\n", hdr->sourceAddress);
+  snprintf(text, SIZE, "Sender Address       : ");
   writeIpLog(text);
+  logIpAddress(hdr->sourceAddress);
 
-  snprintf(text, SIZE, "destination          : %"PRIu32"\n", hdr->destinationAddress);
+  snprintf(text, SIZE, "Destination Address  : ");
   writeIpLog(text);
+  logIpAddress(hdr->destinationAddress);
 
-  snprintf(text, SIZE, "\n-------------------------------------------------------------------------------------------\n\n");
+  snprintf(text, SIZE, "\n-------------------------------------------------\n\n");
   writeIpLog(text);
 
   free(text);

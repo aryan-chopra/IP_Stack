@@ -4,16 +4,16 @@ Header Length        : 5
 Version              : 4
 tos                  : 0
 totalLength          : 84
-ID                   : 45321
+ID                   : 19215
 flags                : 0
 fragmentOffset       : 8
 ttl                  : 64
 protocol             : 1
-checksum             : 3856
-Sender Address       : 1029089472
-destination          : 67108874
+checksum             : 29962
+Sender Address       : 192.168.86.61
+Destination Address  : 10.0.0.4
 
--------------------------------------------------------------------------------------------
+-------------------------------------------------
 
 Outgoing IP Header:
 
@@ -21,16 +21,16 @@ Header Length        : 5
 Version              : 4
 tos                  : 0
 totalLength          : 21504
-ID                   : 45321
+ID                   : 19215
 flags                : 0
 fragmentOffset       : 8
 ttl                  : 64
 protocol             : 1
-checksum             : 3856
-Sender Address       : 67108874
-destination          : 1029089472
+checksum             : 29962
+Sender Address       : 10.0.0.4
+Destination Address  : 192.168.86.61
 
--------------------------------------------------------------------------------------------
+-------------------------------------------------
 
 Incoming IP Header:
 
@@ -38,16 +38,16 @@ Header Length        : 5
 Version              : 4
 tos                  : 0
 totalLength          : 84
-ID                   : 52235
+ID                   : 65041
 flags                : 0
 fragmentOffset       : 8
 ttl                  : 64
 protocol             : 1
-checksum             : 62477
-Sender Address       : 1029089472
-destination          : 67108874
+checksum             : 49671
+Sender Address       : 192.168.86.61
+Destination Address  : 10.0.0.4
 
--------------------------------------------------------------------------------------------
+-------------------------------------------------
 
 Outgoing IP Header:
 
@@ -55,16 +55,16 @@ Header Length        : 5
 Version              : 4
 tos                  : 0
 totalLength          : 21504
-ID                   : 52235
+ID                   : 65041
 flags                : 0
 fragmentOffset       : 8
 ttl                  : 64
 protocol             : 1
-checksum             : 62477
-Sender Address       : 67108874
-destination          : 1029089472
+checksum             : 49671
+Sender Address       : 10.0.0.4
+Destination Address  : 192.168.86.61
 
--------------------------------------------------------------------------------------------
+-------------------------------------------------
 
 Incoming IP Header:
 
@@ -72,16 +72,16 @@ Header Length        : 5
 Version              : 4
 tos                  : 0
 totalLength          : 84
-ID                   : 44813
+ID                   : 5396
 flags                : 0
 fragmentOffset       : 8
 ttl                  : 64
 protocol             : 1
-checksum             : 4364
-Sender Address       : 1029089472
-destination          : 67108874
+checksum             : 43781
+Sender Address       : 192.168.86.61
+Destination Address  : 10.0.0.4
 
--------------------------------------------------------------------------------------------
+-------------------------------------------------
 
 Outgoing IP Header:
 
@@ -89,14 +89,14 @@ Header Length        : 5
 Version              : 4
 tos                  : 0
 totalLength          : 21504
-ID                   : 44813
+ID                   : 5396
 flags                : 0
 fragmentOffset       : 8
 ttl                  : 64
 protocol             : 1
-checksum             : 4364
-Sender Address       : 67108874
-destination          : 1029089472
+checksum             : 43781
+Sender Address       : 10.0.0.4
+Destination Address  : 192.168.86.61
 
--------------------------------------------------------------------------------------------
+-------------------------------------------------
 
