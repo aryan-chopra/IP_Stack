@@ -25,7 +25,7 @@ void writeEthLog(char *text) {
   write(ethLogFile, text, strlen(text));
 }
 
-void logEthMac(unsigned char mac[6]) {
+static void logMacAddress(unsigned char mac[6]) {
   unsigned char logText[4];
 
   for (int index = 0; index < 5; index++) {
@@ -53,11 +53,11 @@ void logEthernetHeader(EthernetHeader *ethHeader, int incoming) {
 
   snprintf(text, SIZE, "Destination Mac          : ");
   writeEthLog(text);
-  logEthMac(ethHeader->destinationMac);
+  logMacAddress(ethHeader->destinationMac);
 
   snprintf(text, SIZE, "Source Mac               : ");
   writeEthLog(text);
-  logEthMac(ethHeader->sourceMac);
+  logMacAddress(ethHeader->sourceMac);
 
   snprintf(text, SIZE, "Payload type             : %"PRIu16"\n", ethHeader->payloadType);
   writeEthLog(text);

@@ -24,15 +24,16 @@
 ArpCacheEntry cache[ARP_CACHE_LEN];
 
 /**
-* @brief This function initializes the ArpCache buffer by setting it to zero(0).
-*
-* @pre An array containing ArpCacheEntry of size ARP_CACHE_LEN exists.
-*/
+ * @brief This function initializes the ArpCache buffer by setting it to zero(0).
+ *
+ * @pre An array containing ArpCacheEntry of size ARP_CACHE_LEN exists.
+ */
+
 void initArp() {
-	memset(cache, 0, ARP_CACHE_LEN * sizeof(ArpCacheEntry));
+  memset(cache, 0, ARP_CACHE_LEN * sizeof(ArpCacheEntry));
 }
 
-/*
+/**
  * @brief Creates a new ARP entry for the ARP header passed.
  *
  *
@@ -43,30 +44,32 @@ void initArp() {
  * @param[in] header Struct containing the information about the device sending the ARP request.
  * @param[in] data Struct containing the source and destination IP and MAC address.
  * @return 0, if the entry is inserted successfully, -1, if the cache is full.
+ * @pre ARP_CACHE_LEN is initialized, Arp Cache is initialized.
  */
+
 int insertArpEntry(ArpHeader *header, arp_ipv4 *data) {
-	int length = ARP_CACHE_LEN;
+  int length = ARP_CACHE_LEN;
 
-	ArpCacheEntry *entry;
+  ArpCacheEntry *entry;
 
-	for (int index = 0; index < length; index++) {
-		entry = &(cache[index]);
+  for (int index = 0; index < length; index++) {
+    entry = &(cache[index]);
 
-		if (entry->state == ARP_FREE) {
-			entry->state = ARP_RESOLVED;
+    if (entry->state == ARP_FREE) {
+      entry->state = ARP_RESOLVED;
 
-			entry->hardwareType = header->hardwareType;
-			entry->sourceIp = data->sourceIp;
-			memcpy(entry->sourceMac, data->sourceMac, sizeof(entry->sourceMac));
+      entry->hardwareType = header->hardwareType;
+      entry->sourceIp = data->sourceIp;
+      memcpy(entry->sourceMac, data->sourceMac, sizeof(entry->sourceMac));
 
-			return 0;
-		}
-	}
+      return 0;
+    }
+  }
 
-	return -1;
+  return -1;
 }
 
-/*
+/**
  * @brief Updates the ARP cache's mac address for the corresponding IP address contained in the ARP data
  *
  * 
@@ -77,26 +80,28 @@ int insertArpEntry(ArpHeader *header, arp_ipv4 *data) {
  * @param[in] header Struct containing the information about the device sending the ARP request.
  * @param[in] data Struct containing the source and destination IP and MAC address.
  * @return 0, if the entry is updated successfully, -1 if the entry having the IP address of the source does not exist.
+ * @pre ARP_CACHE_LEN is initialized, Arp Cache is initalized.
  */
+
 int updateArpTable(ArpHeader *header, arp_ipv4 *data) {
-	int length = ARP_CACHE_LEN;
+  int length = ARP_CACHE_LEN;
 
-	ArpCacheEntry *entry;
+  ArpCacheEntry *entry;
 
-	for (int index = 0; index < length; index++) {
-		entry = &cache[index];
+  for (int index = 0; index < length; index++) {
+    entry = &cache[index];
 
-		if (entry->state == ARP_RESOLVED) {
-			if (entry->hardwareType == header->hardwareType && entry->sourceIp == data->sourceIp) {
-				memcpy(entry->sourceMac, data->sourceMac, 6);
-				return 1;
-			}
-		}
-	}
-	return 0;
+    if (entry->state == ARP_RESOLVED) {
+      if (entry->hardwareType == header->hardwareType && entry->sourceIp == data->sourceIp) {
+        memcpy(entry->sourceMac, data->sourceMac, 6);
+        return 1;
+      }
+    }
+  }
+  return 0;
 }
 
-/*
+/**
  * @brief Handles the incoming ARP request.
  *
  *
@@ -112,52 +117,53 @@ int updateArpTable(ArpHeader *header, arp_ipv4 *data) {
  * @param[in] netdev A struct emulating a network device having IP and MAC address.
  * @param[in] header A struct containing the information of an ethernet header.
  */
+
 void incomingRequest(Netdev *netdev, EthernetHeader *header) {
 
-	ArpHeader *arpHeader;
-	arp_ipv4 *arpData;
-	int merge = 0;
+  ArpHeader *arpHeader;
+  arp_ipv4 *arpData;
+  int merge = 0;
 
-	arpHeader = (ArpHeader *) header->payload;
-	arpHeader->hardwareType = ntohs(arpHeader->hardwareType);
-	arpHeader->protype = ntohs(arpHeader->protype);
-	arpHeader->opcode = ntohs(arpHeader->opcode);
+  arpHeader = (ArpHeader *) header->payload;
+  arpHeader->hardwareType = ntohs(arpHeader->hardwareType);
+  arpHeader->protype = ntohs(arpHeader->protype);
+  arpHeader->opcode = ntohs(arpHeader->opcode);
 
-	arpData = (arp_ipv4 *) arpHeader->data;
+  arpData = (arp_ipv4 *) arpHeader->data;
 
   log(arpData, L_ARP | L_INCOMING);
 
-	if (arpHeader->hardwareType != ARP_ETHERNET) {
-		printf("Only ethernet is supported\n");
-		return;
-	}
+  if (arpHeader->hardwareType != ARP_ETHERNET) {
+    printf("Only ethernet is supported\n");
+    return;
+  }
 
-	if (arpHeader->protype != ARP_IPV4) {
-		printf("Only IPv4 is supported\n");
-		return;
-	}
+  if (arpHeader->protype != ARP_IPV4) {
+    printf("Only IPv4 is supported\n");
+    return;
+  }
 
-	merge = updateArpTable(arpHeader, arpData);
+  merge = updateArpTable(arpHeader, arpData);
 
-	if (netdev->address!= arpData->destinationIp) {
-		printf("ARP not for our own address\n");
-	}
+  if (netdev->address!= arpData->destinationIp) {
+    printf("ARP not for our own address\n");
+  }
 
-	if (!merge && insertArpEntry(arpHeader, arpData) != 0) {
-		printf("ARP Table full!\n");
-	}
+  if (!merge && insertArpEntry(arpHeader, arpData) != 0) {
+    printf("ARP Table full!\n");
+  }
 
-	switch (arpHeader-> opcode) {
-		case ARP_REQUEST:
-			replyArp(netdev, header, arpHeader);
-			break;
-		default:
-			printf("Invalid Request\n");
-			break;
-	}
+  switch (arpHeader-> opcode) {
+    case ARP_REQUEST:
+      replyArp(netdev, header, arpHeader);
+      break;
+    default:
+      printf("Invalid Request\n");
+      break;
+  }
 }
 
-/*
+/**
  * @brief Replies the MAC address back to the sender
  *
  *
@@ -171,26 +177,27 @@ void incomingRequest(Netdev *netdev, EthernetHeader *header) {
  * @param[in] header A struct containing the information of an ethernet header.
  * @param[in, out] header Struct containing the information about the device sending the ARP request.
  */
+
 void replyArp(Netdev *netdev, EthernetHeader *etherHeader, ArpHeader *arpHeader) {
-	arp_ipv4 *arpData;
-	int length;
+  arp_ipv4 *arpData;
+  int length;
 
-	arpData = (arp_ipv4 *) arpHeader->data;
+  arpData = (arp_ipv4 *) arpHeader->data;
 
-	memcpy(arpData->destinationMac, arpData->sourceMac, 6);
-	arpData->destinationIp = arpData->sourceIp;
-	memcpy(arpData->sourceMac, netdev->macOctets, 6);
-	arpData->sourceIp = netdev->address;
+  memcpy(arpData->destinationMac, arpData->sourceMac, 6);
+  arpData->destinationIp = arpData->sourceIp;
+  memcpy(arpData->sourceMac, netdev->macOctets, 6);
+  arpData->sourceIp = netdev->address;
 
-	arpHeader->opcode = ARP_REPLY;
+  arpHeader->opcode = ARP_REPLY;
 
-	arpHeader->opcode = htons(arpHeader->opcode);
-	arpHeader->hardwareType = htons(arpHeader->hardwareType);
-	arpHeader->protype = htons(arpHeader->protype);
+  arpHeader->opcode = htons(arpHeader->opcode);
+  arpHeader->hardwareType = htons(arpHeader->hardwareType);
+  arpHeader->protype = htons(arpHeader->protype);
 
-	length = sizeof(ArpHeader) + sizeof(arp_ipv4);
+  length = sizeof(ArpHeader) + sizeof(arp_ipv4);
 
   log(arpData, L_ARP);
-	transmitNetdev(netdev, etherHeader,  ETH_P_ARP, length, arpData->destinationMac);
+  transmitNetdev(netdev, etherHeader,  ETH_P_ARP, length, arpData->destinationMac);
 }
 
