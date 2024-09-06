@@ -1154,3 +1154,105 @@ Destination Address  : 192.168.84.186
 
 -------------------------------------------------
 
+Incoming IP Header:
+
+Header Length        : 5
+Version              : 4
+tos                  : 0
+totalLength          : 84
+ID                   : 13973
+flags                : 0
+fragmentOffset       : 8
+ttl                  : 64
+protocol             : 1
+checksum             : 3206
+Sender Address       : 192.168.84.186
+Destination Address  : 10.0.0.4
+
+-------------------------------------------------
+
+Outgoing IP Header:
+
+Header Length        : 5
+Version              : 4
+tos                  : 0
+totalLength          : 21504
+ID                   : 13973
+flags                : 0
+fragmentOffset       : 8
+ttl                  : 64
+protocol             : 1
+checksum             : 3206
+Sender Address       : 10.0.0.4
+Destination Address  : 192.168.84.186
+
+-------------------------------------------------
+
+Incoming IP Header:
+
+Header Length        : 5
+Version              : 4
+tos                  : 0
+totalLength          : 84
+ID                   : 35480
+flags                : 0
+fragmentOffset       : 8
+ttl                  : 64
+protocol             : 1
+checksum             : 47234
+Sender Address       : 192.168.84.186
+Destination Address  : 10.0.0.4
+
+-------------------------------------------------
+
+Outgoing IP Header:
+
+Header Length        : 5
+Version              : 4
+tos                  : 0
+totalLength          : 21504
+ID                   : 35480
+flags                : 0
+fragmentOffset       : 8
+ttl                  : 64
+protocol             : 1
+checksum             : 47234
+Sender Address       : 10.0.0.4
+Destination Address  : 192.168.84.186
+
+-------------------------------------------------
+
+Incoming IP Header:
+
+Header Length        : 5
+Version              : 4
+tos                  : 0
+totalLength          : 84
+ID                   : 41113
+flags                : 0
+fragmentOffset       : 8
+ttl                  : 64
+protocol             : 1
+checksum             : 41601
+Sender Address       : 192.168.84.186
+Destination Address  : 10.0.0.4
+
+-------------------------------------------------
+
+Outgoing IP Header:
+
+Header Length        : 5
+Version              : 4
+tos                  : 0
+totalLength          : 21504
+ID                   : 41113
+flags                : 0
+fragmentOffset       : 8
+ttl                  : 64
+protocol             : 1
+checksum             : 41601
+Sender Address       : 10.0.0.4
+Destination Address  : 192.168.84.186
+
+-------------------------------------------------
+

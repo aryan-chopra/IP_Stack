@@ -1,2 +1,14 @@
-main.out: src/main.c
-	gcc -w -I./includes src/main.c src/arp.c src/netdev.c src/tun.c src/ethernet.c src/ip.c src/icmp.c src/ip_log.c src/ethernet_log.c src/arp_log.c src/log.c -o main
+CPPFLAGS = -Iinclude -Wall
+
+src = $(wildcard src/*.c)
+obj = $(patsubst src/%.c, build/%.o, $(src))
+headers = $(wildcard include/*.h)
+
+main: $(obj)
+	$(CC) $(obj) -o main 
+
+build/%.o: src/%.c ${headers}
+	$(CC) $(CFLAGS) $(CPPFLAGS) -c $< -o $@
+
+clean:
+	rm build/*.o lvl-ip

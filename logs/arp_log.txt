@@ -718,3 +718,21 @@ Destination MAC   : e6:00:2d:cc:fc:dc
 
 -------------------------------------------------------------------------
 
+Incoming ARP Header:
+
+Source IP         : 192.168.84.186
+Destination IP    : 10.0.0.4
+Source MAC        : e6:00:2d:cc:fc:dc
+Destination MAC   : 00:00:00:00:00:00
+
+-------------------------------------------------------------------------
+
+Outgoing ARP Header:
+
+Source IP         : 10.0.0.4
+Destination IP    : 192.168.84.186
+Source MAC        : 00:0c:29:6d:50:25
+Destination MAC   : e6:00:2d:cc:fc:dc
+
+-------------------------------------------------------------------------
+
