@@ -6,7 +6,7 @@
 
 void openIpLog();
 void writeIpLog(char *);
-void logIpHeader(IpHeader *, int);
+void logIpHeader(IpHeader *, uint8_t);
 
 #endif
 
