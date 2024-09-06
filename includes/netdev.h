@@ -4,12 +4,13 @@
 #include "ethernet.h"
 
 typedef struct{
+  int deviceDescriptor;
 	uint32_t address;
 	unsigned char macOctets[6];
 }Netdev;
 
-void initNetdev(Netdev *device, char *address, char *hardwareAddress);
-void transmitNetdev(Netdev *device, EthernetHeader *ethHeader, uint16_t ethernetType, int length, unsigned char *destination);
+void initNetdev(Netdev *, int,  char *, char *);
+void transmitNetdev(Netdev *, EthernetHeader *, uint16_t , int , unsigned char *);
 
 #endif
 
