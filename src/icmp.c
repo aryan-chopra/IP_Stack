@@ -1,7 +1,7 @@
 /**
  * @file icmp.c
  * @author Aryan Chopra
- * @brief Replies to an incoming ICMP Request over a network
+ * @brief Replies to an incoming ICMP Request over a network.
  */
 
 #include <inttypes.h>
