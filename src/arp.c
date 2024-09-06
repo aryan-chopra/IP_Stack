@@ -126,7 +126,7 @@ void incomingRequest(Netdev *netdev, EthernetHeader *header) {
 
   arpHeader = (ArpHeader *) header->payload;
   arpHeader->hardwareType = ntohs(arpHeader->hardwareType);
-  arpHeader->protype = ntohs(arpHeader->protype);
+  arpHeader->protocol = ntohs(arpHeader->protocol);
   arpHeader->opcode = ntohs(arpHeader->opcode);
 
   arpData = (arp_ipv4 *) arpHeader->data;
@@ -138,7 +138,7 @@ void incomingRequest(Netdev *netdev, EthernetHeader *header) {
     return;
   }
 
-  if (arpHeader->protype != ARP_IPV4) {
+  if (arpHeader->protocol != ARP_IPV4) {
     printf("Only IPv4 is supported\n");
     return;
   }
@@ -174,8 +174,8 @@ void incomingRequest(Netdev *netdev, EthernetHeader *header) {
  * Updates the length, logs the outgoing ARP packet, and calls the function required to transmit the packet over the network.
  *
  * @param[in] netdev A struct emulating a network device having IP and MAC address.
- * @param[in] header A struct containing the information of an ethernet header.
- * @param[in, out] header Struct containing the information about the device sending the ARP request.
+ * @param[in, out] etherHeader A struct containing the information of an ethernet header.
+ * @param[in, out] arpHeader A struct containing the information about the device sending the ARP request.
  */
 
 void replyArp(Netdev *netdev, EthernetHeader *etherHeader, ArpHeader *arpHeader) {
@@ -193,7 +193,7 @@ void replyArp(Netdev *netdev, EthernetHeader *etherHeader, ArpHeader *arpHeader)
 
   arpHeader->opcode = htons(arpHeader->opcode);
   arpHeader->hardwareType = htons(arpHeader->hardwareType);
-  arpHeader->protype = htons(arpHeader->protype);
+  arpHeader->protocol = htons(arpHeader->protocol);
 
   length = sizeof(ArpHeader) + sizeof(arp_ipv4);
 

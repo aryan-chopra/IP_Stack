@@ -38,7 +38,8 @@ int ipLogFile;
  *
  *
  * Opens the log file at the specified location in append mode.
- * In case of an error, it prints an explanatory error message on console and exits the process.
+ * In case of an error, it prints an explanatory error message on console
+ * and exits the process.
  *
  * @pre Log file exists at the location specified
  */
@@ -54,6 +55,7 @@ void openIpLog() {
 /**
  * @brief Writes the char array in the IP log file.
  *
+ * @param[in] text A character array containing the text to log.
  * @pre The file descriptor is valid.
  */
 
@@ -62,17 +64,22 @@ void writeIpLog(char *text) {
 }
 
 /**
- * @brief Converts the provided address from binary, network notation(Big Endian) 
- * to the legible decimal notation.
+ * @brief Converts the provided address from binary, network notation(Big
+ * Endian) to the legible decimal notation.
  *
  *
- * The function is static to avoid linking errors with the logIpAddress function in a different file.
- * The function writes the formated string using snprintf to a buffer which is then logged to the log file.
- * inet_atoa requires in_addr struct which contains a single field equivalent to uint32_t.
- * The address provided is casted to the struct which is then used to covert the 
+ * The function is static to avoid linking errors with the logIpAddress
+ * function in a different file.
+ * The function writes the formated string using snprintf to a buffer which
+ * is then logged to the log file.
+ * inet_atoa requires in_addr struct which contains a single field
+ * equivalent to uint32_t.
+ * The address provided is casted to the struct which is then used to covert
+ * the 
  * IP address in commonl understandable format.
  *
- * @param[in] address 32 bit unsigned int which contains the IP address in binary, Big Endian notation.
+ * @param[in] address 32 bit unsigned int which contains the IP address in
+ * binary, Big Endian notation.
  */
 
 static void logIpAddress(uint32_t address) {
@@ -93,8 +100,10 @@ static void logIpAddress(uint32_t address) {
  * Logs the fields of the IP Header in the Log file.
  * Calls necessary functions to convert the IP address in legible form.
  *
- * @param[in] hdr A struct formatted with apt name and sizes of fields in an IP Header.
- * @param[in] incoming A flag which marks whether the header provided is incoming or outgoing.
+ * @param[in] hdr A struct formatted with apt name and sizes of fields in an
+ * IP Header.
+ * @param[in] incoming A flag which marks whether the header provided is
+ * incoming or outgoing.
  */
 
 void logIpHeader(IpHeader *hdr, uint8_t incoming) {

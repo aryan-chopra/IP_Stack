@@ -26,16 +26,23 @@
  * Writes the error to the console and exits the process in case of an error.
  * Initializes the device with the name provided.
  * If no name is provided, the default name provided by the kernel is used.
- * If no name is provided, the name provided by the kernel is copied to the buffer provided.
+ * If no name is provided, the name provided by the kernel is copied to the
+ * buffer provided.
  * Clears the configuration struct, to avoid any random ones(1).
  * Configures the interface as a TAP device.
- * IFF_NO_PI signifies that the version of IP protocol will be deduced from IP version number in the packet.
- * Writes the error to the console, and exits the process if device's configuration fails.
+ * IFF_NO_PI signifies that the version of IP protocol will be deduced from
+ * IP version number in the packet.
+ * Writes the error to the console, and exits the process if device's
+ * configuration fails.
  *
- * @param[in, out] name A character array containing the name to be assigned to the interface
- * In case the buffer is empty, the default name assigned is copied to the buffer.
- * @return device An integer containing the file descriptor of the TUN/TAP device.
- * @pre The "name" array has sufficient capacity to hold the default name, if empty.
+ * @param[in, out] name A character array containing the name to be assigned
+ * to the interface
+ * In case the buffer is empty, the default name assigned is copied to the
+ * buffer.
+ * @return device An integer containing the file descriptor of the TUN/TAP
+ * device.
+ * @pre The "name" array has sufficient capacity to hold the default name,
+ * if empty.
  */
 
 int allocTap(char *name) {

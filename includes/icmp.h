@@ -1,20 +1,38 @@
+/**
+ * @file icmp.h
+ * @author Aryan Chopra
+ * @brief This file contains the definations of the struct to read and edit the
+ * ICMP header.
+ */
+
 #ifndef ICMPV4_H
 #define ICMPV4_H
+
+#include <stdint.h>
 
 #include "ip.h"
 #include "netdev.h"
 
-#define ICMP_REPLY 0x00
-#define ICMP_DST_UNREACHABLE 0x03
-#define ICMP_SRC_QUENCH 0x04
-#define ICMP_REDIRECT 0x05
-#define ICMP_ECHO 0x08
-#define ICMP_ROUTER_ADV 0x09
-#define ICMP_ROUTER_SOL 0x0a
-#define ICMP_TIMEOUT 0x0b
-#define ICMP_MALFORMED 0x0c
+#define ICMP_REPLY 0x00 ///Predefined value which represents the header carries an ICMP reply.
+#define ICMP_ECHO 0x08 ///Predefined value which represents the header carries an ICMP request.
 
-#include <stdint.h>
+/**
+ * @struct Icmp
+ * @brief A struct to hold various fields in an ICMP header.
+ *
+ * @var Icmp::type
+ * Describes the purpose of payload the header carries.
+ *
+ * @var Icmp::code
+ * Describes the code, or the type of message the header carries.
+ *
+ * @var Icmp::checksum
+ * Holds the checksum for the ICMP header.
+ * It is used to verify the integrity of the header.
+ *
+ * @var Icmp::data
+ * Contains the payload the ICMP header carries.
+ */
 
 typedef struct {
   //Purpose of message
@@ -25,27 +43,36 @@ typedef struct {
   uint8_t data[];
 }__attribute((packed)) Icmp;
 
-typedef struct {
-  //set by sender, the process for which the req is intended (eg pid)
-  uint16_t id;
-  //consecutive sequence numbers of echo requests to check for loss or reordering
-  uint16_t requestSequence;
-  //timestamp, etc
-  uint8_t data[];
-}__attribute__((packed)) IcmpEcho;
-
-typedef struct {
-  //dummy octet
-  uint8_t unused;
-  //length of OG datagram
-  uint8_t length;
-  //depends on ICMP field
-  uint16_t var;
-  //Packet that caused the destination unreachable
-  uint8_t data[];
-}__attribute__((packed)) IcmpDestUnreachable;
+/**
+ * @brief Handles the incoming ICMP Reqeust.
+ *
+ *
+ * Extracts the ICMP information from the incoming IP Header.
+ * Checks if the request type is Echo, and calls the appropriate function to
+ * modify the incoming header accordingly.
+ *
+ * @param[in, out] IpHeader A struct containing aptly named and sized
+ * fields of an IP Header.
+ * If the request type is Echo, calls the appropriate function to modify the
+ * incmoing header.
+ */
 
 void handleIcmp(IpHeader *); 
+
+/**
+ * @brief Changes the info type from Echo to Reply, and recomputes the checksum.
+ *
+ *
+ * @param[in, out] icmpInfo A struct formated with appropriate names and
+ * sizes for an ICMP Header.
+ * Changes the type from Echo to Reply to reply back to the ICMP(commonly a
+ * ping) request.
+ * Recomputes the checksum.
+ * @param[in] Icmp A struct which is designed to allow us to read and write to
+ * the ICMP header.
+ * @param[in] int Conatains length of ICMP Header.
+ */
+
 void structureIcmpReply(Icmp *, int);
 
 #endif

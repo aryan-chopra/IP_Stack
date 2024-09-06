@@ -56,8 +56,10 @@ void writeEthLog(char *text) {
  * @brief Logs mac address to the log file
  *
  *
- * The function is static to prevent it's symbol being exported and clashin with similar function from other files.
- * Converts the given address to the commonly legible format and logs it to a file.
+ * The function is static to prevent it's symbol being exported and clashin
+ * with similar function from other files.
+ * Converts the given address to the commonly legible format and logs it to
+ * a file.
  *
  * @param[in] mac[6] a character array containing the mac address.
  */
@@ -81,7 +83,8 @@ static void logMacAddress(unsigned char mac[6]) {
  *
  * Parses the provided ethernet header and logs the various fields.
  * Marks the packet as incoming or outgoing based on the flag provided
- * Calls the appropriate functions to format and log MAC address in legible format.
+ * Calls the appropriate functions to format and log MAC address in legible
+ * format.
  *
  * @param[in] ethHeader Struct formated with apt names and sizes for various fields of an ethernet header.
  * @param[in] incoming Flag that marks the packet as incoming or outgoing

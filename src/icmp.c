@@ -16,10 +16,13 @@
  *
  *
  * Extracts the ICMP information from the incoming IP Header.
- * Checks if the request type is Echo, and calls the appropriate function to modify the incoming header accordingly.
+ * Checks if the request type is Echo, and calls the appropriate function to
+ * modify the incoming header accordingly.
  *
- * @param[in, out] ipHeader A struct containing aptly named and sized fields of an IP Header.
- * If the request type is Echo, calls the appropriate function to modify the incmoing header.
+ * @param[in, out] ipHeader A struct containing aptly named and sized fields
+ * of an IP Header.
+ * If the request type is Echo, calls the appropriate function to modify the
+ * incmoing header.
  */
 
 void handleIcmp(IpHeader *ipHeader) {
@@ -41,9 +44,12 @@ void handleIcmp(IpHeader *ipHeader) {
  * @brief Changes the info type from Echo to Reply, and recomputes the checksum.
  *
  *
- * @param[in, out] icmpInfo A struct formated with appropriate names and sizes for an ICMP Header.
- * Changes the type from Echo to Reply to reply back to the ICMP(commonly a ping) request.
+ * @param[in, out] icmpInfo A struct formated with appropriate names and
+ * sizes for an ICMP Header.
+ * Changes the type from Echo to Reply to reply back to the ICMP(commonly a
+ * ping) request.
  * Recomputes the checksum.
+ * @param[in] int Conatains length of ICMP Header.
  * @param[in] icmpLength Conatains length of ICMP Header.
  */
 

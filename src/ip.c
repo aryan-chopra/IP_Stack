@@ -29,12 +29,16 @@
  * Computes the checksum to verify the integrity of the packet.
  * Checks various parameters of the IP Header to verify the integrity.
  * Checks the type of request the packet is carrying.
- * In case of an ICMP request, calls the appropriate functions to deal with the ICMP request.
+ * In case of an ICMP request, calls the appropriate functions to deal with
+ * the ICMP request.
  * Replies back to the source with a modified IP/Ethernet Packet.
  *
- * @param[in] netdev A struct emulating a network device. The IP request is directed to the device.
- * @param[in, out] ethHeader A struct containing formated fields for an Ethrnet Header.
- * The payload and the sender and receiver address of the packet is modified while relaying back.
+ * @param[in] netdev A struct emulating a network device. The IP request is
+ * directed to the device.
+ * @param[in, out] ethHeader A struct containing formated fields for an
+ * Ethrnet Header.
+ * The payload and the sender and receiver address of the packet is modified
+ * while relaying back.
  * @pre The ethernet header contains an IP Packet;
  */
 
@@ -86,14 +90,18 @@ void ipIncoming(Netdev *netdev, EthernetHeader *ethHeader) {
  * @brief Relays the ethernet packet back to the sender.
  *
  *
- * Swaps the source and destination IP Addresses, as the Packet is to be send back to the sender.
+ * Swaps the source and destination IP Addresses, as the Packet is to be
+ * send back to the sender.
  * Recomputes the checksum to verify the integrity of the IP Packet.
  * Logs the outgoing Packet to a log file.
  *
- * @param[in] netdev A struct emulating a device on the network, through which the request is received
+ * @param[in] netdev A struct emulating a device on the network, through
+ * which the request is received
  * and is to be sent back from.
- * @param[in, out] ethHeader A struct containing formated fields to contain an ethernet header/packet.
- * The payload(Ip Packet) is modified with the appropriate information and is transmitted back to the sender.
+ * @param[in, out] ethHeader A struct containing formated fields to contain
+ * an ethernet header/packet.
+ * The payload(Ip Packet) is modified with the appropriate information and
+ * is transmitted back to the sender.
  */
 
 void ipReply(Netdev *netdev, EthernetHeader *ethHeader){
