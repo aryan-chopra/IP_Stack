@@ -6,7 +6,7 @@
 
 void openArpLog();
 void writeArpLog(char *);
-void logArpHeader(arp_ipv4 *, int);
+void logArpHeader(arp_ipv4 *, uint8_t);
 
 #endif
 

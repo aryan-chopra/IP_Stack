@@ -28,7 +28,13 @@
 int arpLogFile;
 
 /*
- * @brief This functions opens the file to log to, or prints an error and quits the process if unsuccessful.
+ * @brief Opens the log file.
+ * 
+ *
+ * Opens the log file to log the provided ARP Data headers, in append mode.
+ * Prints an error to the console and quits the process in case of an error.
+ *
+ * @pre Log file exists at the location.
  */
 
 void openArpLog() {
@@ -41,6 +47,9 @@ void openArpLog() {
 
 /**
  * @brief Writes to the log file, the character array provided.
+ *
+ *
+ * @pre File descriptor provided is valid.
  */
 
 void writeArpLog(char *text) {

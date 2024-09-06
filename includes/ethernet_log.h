@@ -5,7 +5,7 @@
 
 void openEthernetLog();
 void writeEtLog(char *);
-void logEthernetHeader(EthernetHeader *, int);
+void logEthernetHeader(EthernetHeader *, uint8_t);
 
 #endif
 
